@@ -1,0 +1,9 @@
+target/
+logs/
+.pid-*
+*.class
+*.jar
+.DS_Store
+.idea/
+*.iml
+.mvn/wrapper/maven-wrapper.jar

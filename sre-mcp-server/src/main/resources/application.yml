@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: sre-mcp-server
+  main:
+    web-application-type: none  # no HTTP server — MCP transport is stdio
+    banner-mode: off             # stdout is the MCP protocol channel — suppress all non-protocol output
+  ai:
+    mcp:
+      server:
+        name: sre-copilot-mcp
+        version: 1.0.0
+        type: SYNC
+        stdio: true
+
+# Suppress ALL console output — stdout is the MCP protocol channel.
+# Logging goes to file only.
+logging:
+  pattern:
+    console: ""
+  file:
+    name: ${LOG_DIR:logs}/mcp-server/app.log
+
+sre:
+  services:
+    - name: orders-api
+      baseUrl: http://localhost:8081
+      logFile: ${LOG_DIR:logs}/orders-api/app.log
+      restartEndpoint: /admin/restart
+    - name: payments-api
+      baseUrl: http://localhost:8082
+      logFile: ${LOG_DIR:logs}/payments-api/app.log
+      restartEndpoint: /admin/restart
+    - name: inventory-api
+      baseUrl: http://localhost:8083
+      logFile: ${LOG_DIR:logs}/inventory-api/app.log
+      restartEndpoint: /admin/restart

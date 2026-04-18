@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: orders-api
+
+server:
+  port: 8081
+
+log:
+  dir: ${LOG_DIR:logs}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: payments-api
+
+server:
+  port: 8082
+
+log:
+  dir: ${LOG_DIR:logs}
+
+payments:
+  chaos:
+    failure-rate: 0.30  # 30% of payment attempts fail
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
